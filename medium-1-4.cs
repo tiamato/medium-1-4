@@ -4,7 +4,7 @@ namespace Wombat
 {
     public abstract class Creature
     {
-        public int Health;
+        public int Health { get; private set; }
 
         protected Creature(int health)
         {
@@ -13,15 +13,15 @@ namespace Wombat
 
         public void TakeDamage(int damage)
         {
-            Health -= CalcDamage(damage);
+            Health -= CalculateDamage(damage);
 
             if (Health <= 0)
             {
-                Console.WriteLine("ß óìåð");
+                Console.WriteLine("Ð¯ ÑƒÐ¼ÐµÑ€");
             }
         }
 
-        protected abstract int CalcDamage(int damage);
+        protected abstract int CalculateDamage(int damage);
     }
 
     public class Wombat : Creature
@@ -33,7 +33,7 @@ namespace Wombat
             Armor = armor;
         }
 
-        protected override int CalcDamage(int damage)
+        protected override int CalculateDamage(int damage)
         {
             return damage - Armor;
         }
@@ -48,7 +48,7 @@ namespace Wombat
             Agility = agility;
         }
 
-        protected override int CalcDamage(int damage)
+        protected override int CalculateDamage(int damage)
         {
             return damage / Agility;
         }
